@@ -7,6 +7,7 @@ struct node
   string data;
   struct node *next;
 
+// Node constructor
   node(const string& data_item, node* next_ptr = NULL) :
 	  data(data_item), next(next_ptr) {}
 };
@@ -18,9 +19,11 @@ void display(node* head)
 	node* currentNode = head;
 	while (currentNode -> next != NULL)
 	{
+		// Prints each node except the tail with a space after
 		cout << currentNode -> data << " ";
 		currentNode = currentNode -> next;
 	}
+	// Prints the tail
 	cout << currentNode -> data;
 }
 
@@ -30,8 +33,10 @@ void addBefore(node* head, node* given, string newData)
 	node* currentNode = head;
 	while(currentNode -> next != given)
 	{
+		// This moves the currentNode pointer to the node before the given one
 		currentNode = currentNode -> next;
 	}
+	// This inserts the new node into the linked list before the given node
 	currentNode -> next = new node(newData, currentNode -> next);
 }
 
@@ -41,9 +46,11 @@ void remove(node* head, node* given)
 	node* currentNode = head;
 	while (currentNode -> next != given)
 	{
+		// moves the currentNode pointer to the node before the given one
 		currentNode = currentNode -> next;
 	}
 	currentNode -> next = currentNode -> next -> next;
+	// removes the node and then deletes data stored at the removed node.
 	node* remove = given;
 	delete remove;
 }
@@ -60,8 +67,10 @@ void insert(node* head, string data)
 		node* currentNode = head;
 		while(currentNode -> next != NULL)
 		{
+			// Finds the tail with currentNode
 			currentNode = currentNode -> next;
 		}
+		// Adds the node to the end
 		currentNode -> next = new node(data);
 	}
 }
@@ -78,14 +87,17 @@ void insert(node* head, node* newNode)
 		node* currentNode = head;
 		while(currentNode -> next != NULL)
 		{
+			// Finds the tail with currentNode
 			currentNode = currentNode -> next;
 		}
+		// Adds the node to the end
 		currentNode -> next = newNode;
 	}
 }
 
 int main()
 {
+	// Creating the given Linked List
 	node* sam = new node ("Sam");
 	node* head = new node ("Tom");
 	insert(head, "John");
